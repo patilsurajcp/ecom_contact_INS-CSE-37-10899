@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Contact Finder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 20px;
+        }
+        .container {
+            max-width: 800px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #0d6efd;
+            margin-bottom: 30px;
+        }
+        .form-label {
+            font-weight: 500;
+        }
+        .btn-primary {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+        }
+        .alert {
+            margin-top: 20px;
+        }
+        .info-text {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Business Contact Finder</h1>
+        <p class="text-center mb-4">Search for businesses by location and industry to find contact information</p>
+        
+        {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+        {% endif %}
+        
+        <form method="post" action="/">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="country" class="form-label">Country <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="country" name="country" required placeholder="e.g., USA, UK, Canada">
+                    <div class="info-text">Enter the country name where you want to search for businesses</div>
+                </div>
+                <div class="col-md-6">
+                    <label for="city" class="form-label">City (Optional)</label>
+                    <input type="text" class="form-control" id="city" name="city" placeholder="e.g., New York, London">
+                    <div class="info-text">Specify a city to narrow down your search</div>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="industry" class="form-label">Industry Keywords <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="industry" name="industry" required placeholder="e.g., furniture, clothing, electronics">
+                <div class="info-text">Enter industry keywords separated by commas for better results</div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="count" class="form-label">Number of Results</label>
+                <select class="form-select" id="count" name="count">
+                    <option value="10">10 results</option>
+                    <option value="20">20 results</option>
+                    <option value="30">30 results</option>
+                    <option value="40">40 results</option>
+                    <option value="50">50 results (maximum)</option>
+                </select>
+                <div class="info-text">Select how many results you want to retrieve (more results take longer)</div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Search for Businesses</button>
+        </form>
+        
+        <div class="mt-4 text-center">
+            <p class="small text-muted">
+                This tool searches for businesses based on your criteria, extracts their contact information, 
+                and generates CSV files that you can download.
+            </p>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
